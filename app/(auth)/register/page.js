@@ -15,6 +15,7 @@ import {
 } from "react-icons/hi2";
 import { FaGoogle } from "react-icons/fa";
 import { FiAlertCircle, FiXCircle } from "react-icons/fi";
+import { signUp } from "@/lib/auth-client";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -59,14 +60,15 @@ export default function RegisterPage() {
     try {
       // --- BETTER AUTH INTEGRATION ---
       // import { signUp } from "@/lib/auth-client";
-      // const result = await signUp.email({
-      //   email: formData.email,
-      //   password: formData.password,
-      //   name: formData.name,
-      //   image: formData.image,
-      //   // Note: Role saving requires custom fields setup in Better Auth schema
-      // });
-      // if (result.error) throw new Error(result.error.message);
+      const result = await signUp.email({
+        email: formData.email,
+        password: formData.password,
+        name: formData.name,
+        image: formData.image,
+        role: formData.role,
+        // Note: Role saving requires custom fields setup in Better Auth schema
+      });
+      if (result.error) throw new Error(result.error.message);
 
       // Simulate routing based on selected role
       if (formData.role === "client") {

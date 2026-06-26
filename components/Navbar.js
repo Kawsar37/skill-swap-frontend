@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { HiBars3, HiXMark, HiOutlineRocketLaunch } from "react-icons/hi2";
 import { FiUser, FiLogIn } from "react-icons/fi";
+import { useSession } from "@/lib/auth-client";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const isAuthenticated = useSession();
 
   useEffect(() => {
     const handleScroll = () => {
