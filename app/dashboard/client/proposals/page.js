@@ -31,9 +31,18 @@ export default function ClientProposalsPage() {
         `${BACKEND_URL}/api/proposals?client_email=${session.user.email}`,
       );
       const data = await res.json();
-      setProposals(data);
+
+      // 🚨 FIX: Check if the backend returned an error
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to load proposals");
+      }
+
+      // 🚨 FIX: Ensure data is an array before setting state
+      setProposals(Array.isArray(data) ? data : []);
     } catch (err) {
-      setError("Failed to load proposals.");
+      console.error("Fetch error:", err);
+      setError(err.message);
+      setProposals([]); // Fallback to empty array so .map() doesn't crash
     } finally {
       setLoading(false);
     }

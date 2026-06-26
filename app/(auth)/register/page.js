@@ -41,10 +41,7 @@ export default function RegisterPage() {
     uppercase: /[A-Z]/.test(formData.password),
     lowercase: /[a-z]/.test(formData.password),
   };
-  const isPasswordValid =
-    passwordChecks.length &&
-    passwordChecks.uppercase &&
-    passwordChecks.lowercase;
+  const isPasswordValid = passwordChecks.length;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -300,7 +297,7 @@ export default function RegisterPage() {
                     )}{" "}
                     At least 6 characters
                   </p>
-                  <p
+                  {/* <p
                     className={`flex items-center ${passwordChecks.uppercase ? "text-emerald-600" : "text-slate-400"}`}
                   >
                     {passwordChecks.uppercase ? (
@@ -309,7 +306,7 @@ export default function RegisterPage() {
                       <FiXCircle className="w-3.5 h-3.5 mr-1" />
                     )}{" "}
                     One uppercase letter
-                  </p>
+                  </p> */}
                   <p
                     className={`flex items-center ${passwordChecks.lowercase ? "text-emerald-600" : "text-slate-400"}`}
                   >
