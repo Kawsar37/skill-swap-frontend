@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   HiOutlineRocketLaunch,
@@ -5,9 +7,12 @@ import {
   HiOutlinePhone,
 } from "react-icons/hi2";
 import { FiGithub, FiLinkedin, FiFacebook, FiTwitter } from "react-icons/fi";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const path = usePathname();
+  if (path.includes("/dashboard")) return <></>;
 
   const marketplaceLinks = [
     { name: "Browse Tasks", href: "/tasks" },

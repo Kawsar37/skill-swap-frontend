@@ -5,8 +5,10 @@ import Link from "next/link";
 import { HiBars3, HiXMark, HiOutlineRocketLaunch } from "react-icons/hi2";
 import { FiUser, FiLogIn } from "react-icons/fi";
 import { authClient, useSession } from "@/lib/auth-client";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const path = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isAuthenticated = useSession().data;
@@ -19,6 +21,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (path.includes("/dashboard")) return <></>;
   const handleSignOut = async () => {
     try {
       await authClient.signOut({

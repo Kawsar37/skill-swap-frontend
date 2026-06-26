@@ -35,11 +35,9 @@ export default async function DashboardLayout({ children, params }) {
     redirect(`/${user.role}`);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
-      {/* Pass user data to the Sidebar so it can render the correct links */}
+    <div className="min-h-screen bg-slate-50">
       <DashboardSidebar user={user} />
 
-      {/* Main Content Area */}
       <main className="flex-1 lg:ml-64 p-4 md:p-6 lg:p-8 overflow-x-hidden">
         <div className="max-w-7xl mx-auto">{children}</div>
       </main>
