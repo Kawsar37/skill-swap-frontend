@@ -160,7 +160,7 @@ export default function RegisterPage() {
 
           {/* Google OAuth Button */}
           <button
-            onClick={handleGoogleRegister}
+            onClick={handleGoogleLogin}
             disabled={loading}
             className="w-full flex items-center justify-center space-x-3 px-4 py-3 border border-slate-300 rounded-xl text-slate-700 font-medium hover:bg-slate-50 hover:border-slate-400 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed mb-6"
           >

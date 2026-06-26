@@ -86,7 +86,7 @@ export default function Navbar() {
             {isAuthenticated ? (
               <>
                 <Link
-                  href="/dashboard"
+                  href={`/dashboard/${isAuthenticated.user.role}`}
                   className="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors duration-300"
                 >
                   Dashboard
@@ -162,7 +162,7 @@ export default function Navbar() {
               {isAuthenticated ? (
                 <>
                   <Link
-                    href="/dashboard"
+                    href={`/dashboard/${isAuthenticated.user.role}`}
                     className="block px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-emerald-600"
                   >
                     Dashboard
