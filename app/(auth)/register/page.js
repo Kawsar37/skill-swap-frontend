@@ -15,7 +15,7 @@ import {
 } from "react-icons/hi2";
 import { FaGoogle } from "react-icons/fa";
 import { FiAlertCircle, FiXCircle } from "react-icons/fi";
-import { signUp } from "@/lib/auth-client";
+import { authClient, signUp } from "@/lib/auth-client";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -83,17 +83,15 @@ export default function RegisterPage() {
     }
   };
 
-  const handleGoogleRegister = async () => {
+  const handleGoogleLogin = async () => {
     setLoading(true);
     try {
-      // --- BETTER AUTH INTEGRATION ---
-      // import { signIn } from "@/lib/auth-client";
-      // await signIn.social({ provider: "google", callbackURL: "/" });
-
-      // Google OAuth users are automatically assigned 'Client' role per assignment rules
-      router.push("/");
+      const data = await authClient.signIn.social({
+        provider: "google",
+      });
+      if (data) router.push("/");
     } catch (err) {
-      setError("Google registration failed. Please try again.");
+      setError("Google login failed. Please try again.");
     } finally {
       setLoading(false);
     }

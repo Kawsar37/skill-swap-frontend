@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { HiBars3, HiXMark, HiOutlineRocketLaunch } from "react-icons/hi2";
 import { FiUser, FiLogIn } from "react-icons/fi";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isAuthenticated = useSession();
+  const isAuthenticated = useSession().data;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +18,23 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleSignOut = async () => {
+    try {
+      await authClient.signOut({
+        fetchOptions: {
+          // This runs immediately after the backend successfully destroys the session
+          onSuccess: () => {
+            window.location.reload();
+            // Redirect to login page
+            // router.refresh(); // CRITICAL: Clears Next.js cache so protected routes update immediately
+          },
+        },
+      });
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -80,7 +97,10 @@ export default function Navbar() {
                 >
                   Profile
                 </Link>
-                <button className="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors duration-300">
+                <button
+                  onClick={handleSignOut}
+                  className="inline-flex items-center space-x-1.5 px-4 py-2 text-sm font-medium text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 transition-all duration-300"
+                >
                   Logout
                 </button>
               </>
@@ -153,7 +173,10 @@ export default function Navbar() {
                   >
                     Profile
                   </Link>
-                  <button className="block px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-emerald-600">
+                  <button
+                    onClick={handleSignOut}
+                    className="inline-flex items-center space-x-1.5 px-4 py-2 text-sm font-medium text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 transition-all duration-300"
+                  >
                     Logout
                   </button>
                 </>

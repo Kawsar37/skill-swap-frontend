@@ -12,9 +12,11 @@ import {
 } from "react-icons/hi2";
 import { FaGoogle } from "react-icons/fa";
 import { FiAlertCircle } from "react-icons/fi";
+import { authClient, signIn, useSession } from "@/lib/auth-client";
 
 export default function LoginPage() {
   const router = useRouter();
+  //   const user = useSession().data.user;
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -31,13 +33,13 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      // --- BETTER AUTH INTEGRATION ---
-      // import { signIn } from "@/lib/auth-client";
-      // const result = await signIn.email({ email: formData.email, password: formData.password });
-      // if (result.error) throw new Error(result.error.message);
+      const result = await signIn.email({
+        email: formData.email,
+        password: formData.password,
+      });
+      if (result.error) throw new Error(result.error.message);
 
-      // Simulate fetching user role after successful login
-      const userRole = "client"; // Replace with actual user.role from Better Auth session
+      const userRole = result.data.user.role;
 
       // Route based on Role (Assignment Requirement)
       if (userRole === "client") {
@@ -57,12 +59,10 @@ export default function LoginPage() {
   const handleGoogleLogin = async () => {
     setLoading(true);
     try {
-      // --- BETTER AUTH INTEGRATION ---
-      // import { signIn } from "@/lib/auth-client";
-      // await signIn.social({ provider: "google", callbackURL: "/" });
-
-      // Google OAuth users are automatically assigned 'Client' role per assignment rules
-      router.push("/");
+      const data = await authClient.signIn.social({
+        provider: "google",
+      });
+      if (data) router.push("/");
     } catch (err) {
       setError("Google login failed. Please try again.");
     } finally {
