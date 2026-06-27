@@ -143,7 +143,7 @@ export default function DashboardSidebar({ user }) {
         },
         {
           name: "Browse Tasks",
-          href: "/dashboard/freelancer/browse",
+          href: "/tasks",
           icon: HiOutlineBriefcase,
         },
         {
