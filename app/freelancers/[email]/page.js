@@ -14,6 +14,7 @@ import {
   HiOutlineArrowLeft,
 } from "react-icons/hi2";
 import { FiLoader, FiUser } from "react-icons/fi";
+import Image from "next/image";
 
 export default function FreelancerPublicProfile() {
   const params = useParams();
@@ -75,7 +76,6 @@ export default function FreelancerPublicProfile() {
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-16">
       <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-        {/* Back Button */}
         <button
           onClick={() => router.back()}
           className="flex items-center gap-2 text-slate-600 hover:text-emerald-600 mb-6 transition-colors font-medium"
@@ -84,14 +84,15 @@ export default function FreelancerPublicProfile() {
           Back
         </button>
 
-        {/* Profile Header Card */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
           <div className="h-32 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500"></div>
 
           <div className="p-6 md:p-8 -mt-16">
             <div className="flex flex-col md:flex-row md:items-end gap-6">
               {user.image ? (
-                <img
+                <Image
+                  height={24}
+                  width={24}
                   src={user.image}
                   alt={user.name}
                   className="w-24 h-24 md:w-32 md:h-32 rounded-2xl border-4 border-white shadow-lg object-cover"
@@ -148,10 +149,7 @@ export default function FreelancerPublicProfile() {
             </div>
           </div>
         </div>
-
-        {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column */}
           <div className="lg:col-span-1 space-y-6">
             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
               <h2 className="text-lg font-bold text-slate-900 mb-4">
@@ -197,7 +195,6 @@ export default function FreelancerPublicProfile() {
               </h2>
               <div className="flex flex-wrap gap-2">
                 {(() => {
-                  // 🚨 BULLETPROOF FIX: Convert to array if it's a string
                   const skillsArray = Array.isArray(user.skills)
                     ? user.skills
                     : typeof user.skills === "string"
@@ -235,7 +232,6 @@ export default function FreelancerPublicProfile() {
             </div>
           </div>
 
-          {/* Right Column */}
           <div className="lg:col-span-2 space-y-6">
             {recentJobs && recentJobs.length > 0 && (
               <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">

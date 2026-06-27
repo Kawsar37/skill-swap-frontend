@@ -12,7 +12,6 @@ import { FiSearch, FiTrendingUp, FiStar } from "react-icons/fi";
 export default function Hero() {
   return (
     <section className="relative pt-28 lg:pt-36 pb-16 lg:pb-24 overflow-hidden">
-      {/* Background Decorations */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-100 rounded-full blur-3xl opacity-40" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-50 rounded-full blur-3xl opacity-50" />
@@ -21,7 +20,6 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full mb-6">
               <FiTrendingUp className="w-3.5 h-3.5 text-emerald-600" />
@@ -56,7 +54,6 @@ export default function Hero() {
               one powerful marketplace.
             </p>
 
-            {/* CTA Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
               <Link
                 href="/post-task"
@@ -74,7 +71,6 @@ export default function Hero() {
               </Link>
             </div>
 
-            {/* Trust Indicators */}
             <div className="mt-10 flex items-center gap-6 justify-center lg:justify-start">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
@@ -100,11 +96,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right - Dashboard Mockup */}
           <div className="relative hidden lg:block">
-            {/* Main Dashboard Card */}
             <div className="relative bg-white rounded-2xl shadow-xl border border-slate-200 p-6 transform rotate-1 hover:rotate-0 transition-all duration-500">
-              {/* Dashboard Header */}
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
@@ -124,7 +117,6 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Task List */}
               <div className="space-y-3">
                 {[
                   {
@@ -174,7 +166,6 @@ export default function Hero() {
                 ))}
               </div>
 
-              {/* Progress Bar */}
               <div className="mt-6">
                 <div className="flex justify-between text-xs text-slate-600 mb-2">
                   <span>Monthly Progress</span>
@@ -186,7 +177,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Floating Stat Card - Tasks Completed */}
             <div
               className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg border border-slate-200 p-4 animate-bounce"
               style={{ animationDuration: "3s" }}
@@ -202,7 +192,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Floating Stat Card - Freelancers */}
             <div
               className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg border border-slate-200 p-4 animate-bounce"
               style={{ animationDuration: "4s" }}
@@ -218,7 +207,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Floating Stat Card - Total Payout */}
             <div
               className="absolute top-1/2 -right-8 bg-white rounded-xl shadow-lg border border-slate-200 p-4 animate-bounce"
               style={{ animationDuration: "3.5s" }}

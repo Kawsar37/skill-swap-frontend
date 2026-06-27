@@ -25,7 +25,7 @@ export default function RegisterPage() {
     email: "",
     image: "",
     password: "",
-    role: "client", // Default to client
+    role: "client",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,6 @@ export default function RegisterPage() {
     setError("");
   };
 
-  // Password Constraints Validation (Assignment Requirement)
   const passwordChecks = {
     length: formData.password.length >= 6,
     uppercase: /[A-Z]/.test(formData.password),
@@ -55,19 +54,15 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      // --- BETTER AUTH INTEGRATION ---
-      // import { signUp } from "@/lib/auth-client";
       const result = await signUp.email({
         email: formData.email,
         password: formData.password,
         name: formData.name,
         image: formData.image,
         role: formData.role,
-        // Note: Role saving requires custom fields setup in Better Auth schema
       });
       if (result.error) throw new Error(result.error.message);
 
-      // Simulate routing based on selected role
       if (formData.role === "client") {
         router.push("/");
       } else {
@@ -96,7 +91,6 @@ export default function RegisterPage() {
 
   return (
     <div className="w-full max-w-6xl bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden grid lg:grid-cols-2 min-h-[700px] mx-auto my-20">
-      {/* Left Panel - Branding & Visual */}
       <div className="hidden lg:flex flex-col justify-between p-12 bg-gradient-to-br from-emerald-600 to-teal-700 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-400/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
@@ -132,7 +126,6 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      {/* Right Panel - Form */}
       <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16 overflow-y-auto">
         <div className="w-full max-w-md mx-auto">
           <div className="lg:hidden flex items-center space-x-2 mb-8 justify-center">
@@ -155,7 +148,6 @@ export default function RegisterPage() {
             </Link>
           </p>
 
-          {/* Google OAuth Button */}
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
@@ -176,7 +168,6 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          {/* Error Message */}
           {error && (
             <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start space-x-2 text-red-600 text-sm">
               <FiAlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -184,7 +175,6 @@ export default function RegisterPage() {
             </div>
           )}
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -284,7 +274,6 @@ export default function RegisterPage() {
                   )}
                 </button>
               </div>
-              {/* Password Constraints Indicator */}
               {formData.password.length > 0 && (
                 <div className="mt-2 space-y-1 text-xs">
                   <p
@@ -297,16 +286,6 @@ export default function RegisterPage() {
                     )}{" "}
                     At least 6 characters
                   </p>
-                  {/* <p
-                    className={`flex items-center ${passwordChecks.uppercase ? "text-emerald-600" : "text-slate-400"}`}
-                  >
-                    {passwordChecks.uppercase ? (
-                      <HiOutlineCheckCircle className="w-3.5 h-3.5 mr-1" />
-                    ) : (
-                      <FiXCircle className="w-3.5 h-3.5 mr-1" />
-                    )}{" "}
-                    One uppercase letter
-                  </p> */}
                   <p
                     className={`flex items-center ${passwordChecks.lowercase ? "text-emerald-600" : "text-slate-400"}`}
                   >
@@ -321,7 +300,6 @@ export default function RegisterPage() {
               )}
             </div>
 
-            {/* Role Selection */}
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
                 I want to join as a:

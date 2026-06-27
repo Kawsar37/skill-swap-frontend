@@ -43,7 +43,6 @@ export default function AdminTransactionsPage() {
         Monitor all Stripe payments processed across the platform.
       </p>
 
-      {/* Summary Card */}
       <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm mb-8 flex items-center justify-between">
         <div>
           <p className="text-slate-500 text-sm font-medium">
@@ -70,7 +69,6 @@ export default function AdminTransactionsPage() {
         </div>
       ) : (
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-          {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead className="bg-slate-50 text-slate-600 uppercase text-xs tracking-wider border-b border-slate-200">
@@ -116,7 +114,6 @@ export default function AdminTransactionsPage() {
             </table>
           </div>
 
-          {/* Mobile Cards */}
           <div className="md:hidden divide-y divide-slate-100">
             {transactions.map((t) => (
               <div key={t._id} className="p-5 space-y-3">

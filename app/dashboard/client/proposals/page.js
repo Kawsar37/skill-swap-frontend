@@ -32,17 +32,15 @@ export default function ClientProposalsPage() {
       );
       const data = await res.json();
 
-      // 🚨 FIX: Check if the backend returned an error
       if (!res.ok) {
         throw new Error(data.error || "Failed to load proposals");
       }
 
-      // 🚨 FIX: Ensure data is an array before setting state
       setProposals(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error("Fetch error:", err);
       setError(err.message);
-      setProposals([]); // Fallback to empty array so .map() doesn't crash
+      setProposals([]);
     } finally {
       setLoading(false);
     }
@@ -69,7 +67,7 @@ export default function ClientProposalsPage() {
         },
       );
       if (res.ok) {
-        fetchProposals(); // Refresh the list
+        fetchProposals();
       } else {
         alert("Failed to reject proposal.");
       }
@@ -79,7 +77,6 @@ export default function ClientProposalsPage() {
   };
 
   const handleAccept = (proposal) => {
-    // Redirects to the Stripe Checkout dummy page as per Assignment Section 07
     router.push(
       `/payment/checkout?proposal_id=${proposal._id}&task_id=${proposal.task_id}&amount=${proposal.proposed_budget}`,
     );
@@ -153,7 +150,6 @@ export default function ClientProposalsPage() {
               className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
             >
               <div className="p-6">
-                {/* Task Header */}
                 <div className="flex flex-wrap items-center justify-between gap-4 mb-4 pb-4 border-b border-slate-100">
                   <div>
                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">
@@ -174,7 +170,6 @@ export default function ClientProposalsPage() {
                   </span>
                 </div>
 
-                {/* Proposal Details */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                   <div>
                     <p className="text-xs text-slate-500 mb-1">Freelancer</p>
@@ -200,7 +195,6 @@ export default function ClientProposalsPage() {
                   </div>
                 </div>
 
-                {/* Cover Note */}
                 <div className="bg-slate-50 p-4 rounded-xl mb-6">
                   <p className="text-xs text-slate-500 mb-1 font-semibold uppercase">
                     Cover Note
@@ -210,7 +204,6 @@ export default function ClientProposalsPage() {
                   </p>
                 </div>
 
-                {/* Actions */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-2">
                     {getStatusBadge(proposal.status)}

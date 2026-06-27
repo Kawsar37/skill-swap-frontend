@@ -8,10 +8,11 @@ import {
   HiOutlineSparkles,
 } from "react-icons/hi2";
 import { FiLoader, FiUser } from "react-icons/fi";
+import Image from "next/image";
 
 export default function FreelancerPublicProfile() {
   const params = useParams();
-  const email = decodeURIComponent(params.email); // Decode URL encoded email
+  const email = decodeURIComponent(params.email);
 
   const [user, setUser] = useState(null);
   const [reviews, setReviews] = useState([]);
@@ -58,7 +59,6 @@ export default function FreelancerPublicProfile() {
       </div>
     );
 
-  // Calculate Average Rating
   const avgRating =
     reviews.length > 0
       ? (
@@ -69,13 +69,14 @@ export default function FreelancerPublicProfile() {
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-        {/* Profile Header */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
           <div className="h-32 bg-gradient-to-r from-emerald-500 to-teal-600"></div>
           <div className="p-6 md:p-8 -mt-16">
             <div className="flex flex-col md:flex-row md:items-end gap-6">
               {user.image ? (
-                <img
+                <Image
+                  height={24}
+                  width={24}
                   src={user.image}
                   alt={user.name}
                   className="w-24 h-24 rounded-2xl border-4 border-white shadow-md object-cover"
@@ -116,7 +117,6 @@ export default function FreelancerPublicProfile() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Left Column: Bio & Skills */}
           <div className="md:col-span-1 space-y-6">
             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
               <h2 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
@@ -149,7 +149,6 @@ export default function FreelancerPublicProfile() {
             </div>
           </div>
 
-          {/* Right Column: Reviews */}
           <div className="md:col-span-2">
             <h2 className="text-xl font-bold text-slate-900 mb-4">
               Client Reviews

@@ -17,7 +17,6 @@ export default function ActiveProjectsPage() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
   const [deliverableUrl, setDeliverableUrl] = useState("");
@@ -77,7 +76,7 @@ export default function ActiveProjectsPage() {
       if (!res.ok) throw new Error(data.error);
 
       setIsModalOpen(false);
-      fetchProjects(); // Refresh the list to move it to "Completed"
+      fetchProjects();
     } catch (err) {
       setError(err.message);
     } finally {
@@ -105,7 +104,6 @@ export default function ActiveProjectsPage() {
         Track your in-progress work and submit deliverables to get paid.
       </p>
 
-      {/* In Progress Section */}
       <div className="mb-10">
         <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center">
           <HiOutlineClock className="w-5 h-5 mr-2 text-amber-500" /> In Progress
@@ -144,7 +142,6 @@ export default function ActiveProjectsPage() {
         )}
       </div>
 
-      {/* Completed Section */}
       <div>
         <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center">
           <HiOutlineCheckCircle className="w-5 h-5 mr-2 text-emerald-500" />{" "}
@@ -184,7 +181,6 @@ export default function ActiveProjectsPage() {
         )}
       </div>
 
-      {/* Submit Deliverable Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">

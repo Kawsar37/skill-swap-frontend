@@ -92,7 +92,6 @@ export default function MyProposalsPage() {
         </div>
       ) : (
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-          {/* Desktop Table View */}
           <div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead className="bg-slate-50 text-slate-600 uppercase text-xs tracking-wider border-b border-slate-200">
@@ -129,7 +128,6 @@ export default function MyProposalsPage() {
             </table>
           </div>
 
-          {/* Mobile Card View */}
           <div className="md:hidden divide-y divide-slate-100">
             {proposals.map((p) => (
               <div key={p._id} className="p-5 space-y-3">

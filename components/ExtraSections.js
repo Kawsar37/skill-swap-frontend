@@ -26,9 +26,6 @@ export default function ExtraSections() {
   );
 }
 
-/* ==========================================
-   Platform Statistics
-========================================== */
 function PlatformStatistics() {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -82,7 +79,6 @@ function PlatformStatistics() {
 
   return (
     <section className="py-16 lg:py-24 bg-white relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-50 rounded-full blur-3xl opacity-40" />
         <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-teal-50 rounded-full blur-3xl opacity-40" />
@@ -113,24 +109,20 @@ function PlatformStatistics() {
                 key={index}
                 className="group relative bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center hover:shadow-xl hover:border-emerald-300 hover:-translate-y-2 transition-all duration-300"
               >
-                {/* Icon */}
                 <div
                   className={`w-16 h-16 ${stat.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300`}
                 >
                   <stat.icon className={`w-8 h-8 ${stat.iconColor}`} />
                 </div>
 
-                {/* Value */}
                 <h3 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-2">
                   {stat.value}
                 </h3>
 
-                {/* Label */}
                 <p className="text-sm font-medium text-slate-600">
                   {stat.label}
                 </p>
 
-                {/* Bottom gradient bar */}
                 <div
                   className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.gradient} rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                 />
@@ -143,9 +135,6 @@ function PlatformStatistics() {
   );
 }
 
-/* ==========================================
-   How It Works
-========================================== */
 function HowItWorks() {
   const steps = [
     {
@@ -190,25 +179,21 @@ function HowItWorks() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           {steps.map((step, index) => (
             <div key={index} className="relative">
-              {/* Connector Line */}
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-emerald-300 to-emerald-100" />
               )}
 
               <div className="group bg-white rounded-2xl border border-slate-200 shadow-sm p-8 hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 relative z-10">
-                {/* Step Number */}
                 <div className="absolute -top-3 -right-3 w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center">
                   <span className="text-sm font-bold text-white">
                     {step.step}
                   </span>
                 </div>
 
-                {/* Icon */}
                 <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-100 group-hover:scale-110 transition-all duration-300">
                   <step.icon className="w-7 h-7 text-emerald-600" />
                 </div>
 
-                {/* Content */}
                 <h3 className="text-xl font-bold text-slate-900 mb-3">
                   {step.title}
                 </h3>
@@ -224,9 +209,6 @@ function HowItWorks() {
   );
 }
 
-/* ==========================================
-   Popular Categories
-========================================== */
 function PopularCategories() {
   const categories = [
     {
@@ -298,7 +280,6 @@ function PopularCategories() {
               key={index}
               className={`group bg-white rounded-2xl border border-slate-200 shadow-sm p-6 cursor-pointer hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300`}
             >
-              {/* Icon */}
               <div
                 className={`w-12 h-12 bg-slate-100 ${category.lightBg} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-all duration-300`}
               >
@@ -307,7 +288,6 @@ function PopularCategories() {
                 />
               </div>
 
-              {/* Content */}
               <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors duration-300 mb-1">
                 {category.name}
               </h3>
@@ -315,7 +295,6 @@ function PopularCategories() {
                 {category.description}
               </p>
 
-              {/* Task Count */}
               <div className="flex items-center justify-between pt-3 border-t border-slate-100">
                 <span className="text-sm font-semibold text-emerald-600">
                   {category.taskCount} tasks

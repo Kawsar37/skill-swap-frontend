@@ -47,7 +47,7 @@ export default function ManageUsersPage() {
       );
       const data = await res.json();
       if (res.ok) {
-        fetchUsers(); // Refresh list
+        fetchUsers();
       } else {
         alert(data.error || "Action failed");
       }
@@ -71,7 +71,6 @@ export default function ManageUsersPage() {
       </p>
 
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        {/* Desktop Table */}
         <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-slate-50 text-slate-600 uppercase text-xs tracking-wider border-b border-slate-200">
@@ -151,7 +150,6 @@ export default function ManageUsersPage() {
           </table>
         </div>
 
-        {/* Mobile Cards */}
         <div className="md:hidden divide-y divide-slate-100">
           {users.map((user) => (
             <div

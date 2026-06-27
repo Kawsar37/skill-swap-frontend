@@ -28,7 +28,6 @@ export default function MyTasksPage() {
     process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
   const categories = ["Design", "Development", "Writing", "Marketing", "Other"];
 
-  // 🚨 FIX: Moved fetchTasks OUTSIDE of useEffect so other handlers can use it!
   const fetchTasks = async () => {
     if (!session?.user?.email) return;
     setLoading(true);
@@ -37,7 +36,6 @@ export default function MyTasksPage() {
         `${BACKEND_URL}/api/tasks/client/${session.user.email}`,
       );
 
-      // Safely parse response to prevent "Unexpected token <" crashes
       const text = await res.text();
       let data = [];
       try {
@@ -55,7 +53,6 @@ export default function MyTasksPage() {
   };
 
   useEffect(() => {
-    // Defer the initial load to avoid synchronous setState in the effect body
     const timer = setTimeout(() => {
       fetchTasks();
     }, 0);
@@ -72,7 +69,6 @@ export default function MyTasksPage() {
       const data = await res.json();
       if (!res.ok) return alert(data.error);
 
-      // ✅ Now this works perfectly!
       fetchTasks();
     } catch (err) {
       alert("Failed to delete task");
@@ -101,7 +97,6 @@ export default function MyTasksPage() {
       if (!res.ok) return alert(data.error);
 
       setEditingId(null);
-      // ✅ Now this works perfectly!
       fetchTasks();
     } catch (err) {
       console.error("Exact save error:", err);
@@ -118,7 +113,7 @@ export default function MyTasksPage() {
         body: JSON.stringify({
           task_id: reviewingTask._id,
           reviewer_email: session.user.email,
-          reviewee_email: reviewingTask.freelancer_email, // Note: You might need to fetch this or store it on the task
+          reviewee_email: reviewingTask.freelancer_email,
           rating: reviewForm.rating,
           comment: reviewForm.comment,
         }),
@@ -184,7 +179,6 @@ export default function MyTasksPage() {
               className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm"
             >
               {editingId === task._id ? (
-                // EDIT MODE
                 <div className="space-y-4">
                   <input
                     type="text"
@@ -250,7 +244,6 @@ export default function MyTasksPage() {
                   </div>
                 </div>
               ) : (
-                // VIEW MODE
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
@@ -266,7 +259,6 @@ export default function MyTasksPage() {
                     <p className="text-sm text-slate-600 line-clamp-2">
                       {task.description}
                     </p>
-                    {/* 🚨 SHOW SUBMITTED DELIVERABLE */}
                     {task.deliverable_url && (
                       <div className="mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex items-start gap-3">
                         <HiOutlineLink className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
@@ -321,7 +313,6 @@ export default function MyTasksPage() {
         </div>
       )}
 
-      {/* Review Modal */}
       {reviewingTask && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">

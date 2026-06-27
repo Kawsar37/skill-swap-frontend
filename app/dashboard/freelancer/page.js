@@ -38,7 +38,7 @@ export default function FreelancerOverview() {
           total: proposals.length,
           pending: proposals.filter((p) => p.status === "pending").length,
           accepted: proposals.filter((p) => p.status === "accepted").length,
-          earnings: 0, // Will calculate this after Stripe integration
+          earnings: 0,
         });
       } catch (err) {
         console.error(err);
@@ -93,7 +93,6 @@ export default function FreelancerOverview() {
         Welcome back! Here is a summary of your freelance activity.
       </p>
 
-      {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         {statCards.map((stat, i) => (
           <div
@@ -111,7 +110,6 @@ export default function FreelancerOverview() {
         ))}
       </div>
 
-      {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Link
           href="/tasks"

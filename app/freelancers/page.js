@@ -11,6 +11,7 @@ import {
   HiOutlineCheckCircle,
 } from "react-icons/hi2";
 import { FiLoader, FiInbox } from "react-icons/fi";
+import Image from "next/image";
 
 export default function BrowseFreelancersPage() {
   const router = useRouter();
@@ -75,7 +76,6 @@ export default function BrowseFreelancersPage() {
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
             Browse Freelancers
@@ -85,7 +85,6 @@ export default function BrowseFreelancersPage() {
           </p>
         </div>
 
-        {/* Search & Filters */}
         <div className="bg-white p-4 md:p-6 rounded-2xl border border-slate-200 shadow-sm mb-8">
           <form onSubmit={handleSearch} className="space-y-4">
             <div className="relative">
@@ -179,7 +178,9 @@ export default function BrowseFreelancersPage() {
                     <div className="p-6 pb-4">
                       <div className="flex items-start gap-4 mb-4">
                         {freelancer.image ? (
-                          <img
+                          <Image
+                            height={16}
+                            width={16}
                             src={freelancer.image}
                             alt={freelancer.name}
                             className="w-16 h-16 rounded-2xl object-cover border-2 border-slate-100"
@@ -221,7 +222,6 @@ export default function BrowseFreelancersPage() {
 
                       <div className="flex flex-wrap gap-2 mb-4">
                         {(() => {
-                          // 🚨 BULLETPROOF FIX: Convert to array if it's a string
                           const skillsArray = Array.isArray(freelancer.skills)
                             ? freelancer.skills
                             : typeof freelancer.skills === "string"

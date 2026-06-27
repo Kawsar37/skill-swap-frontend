@@ -31,7 +31,6 @@ export default function CheckoutPage() {
 
       const data = await res.json();
       if (data.url) {
-        // Redirect user to Stripe Hosted Checkout
         window.location.assign(data.url);
       } else {
         alert("Failed to create checkout session.");
@@ -56,14 +55,12 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
-        {/* Header */}
         <div className="bg-emerald-600 p-6 text-white text-center">
           <HiOutlineShieldCheck className="w-12 h-12 mx-auto mb-2" />
           <h1 className="text-2xl font-bold">Secure Checkout</h1>
           <p className="text-emerald-100 text-sm mt-1">Powered by Stripe</p>
         </div>
 
-        {/* Summary */}
         <div className="p-6 space-y-4">
           <div className="flex justify-between items-center pb-4 border-b border-slate-100">
             <span className="text-slate-600">Task Payment</span>

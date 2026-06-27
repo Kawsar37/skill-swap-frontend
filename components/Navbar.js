@@ -27,11 +27,8 @@ export default function Navbar() {
     try {
       await authClient.signOut({
         fetchOptions: {
-          // This runs immediately after the backend successfully destroys the session
           onSuccess: () => {
             window.location.reload();
-            // Redirect to login page
-            // router.refresh(); // CRITICAL: Clears Next.js cache so protected routes update immediately
           },
         },
       });
@@ -70,7 +67,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
@@ -85,7 +81,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
             {isAuthenticated ? (
               <>
@@ -133,7 +128,6 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`lg:hidden p-2 rounded-lg transition-colors duration-300 ${
@@ -150,7 +144,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <div
           className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"

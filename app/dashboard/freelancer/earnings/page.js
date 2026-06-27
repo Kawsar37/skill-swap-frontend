@@ -51,7 +51,6 @@ export default function FreelancerEarningsPage() {
         Track your income from completed tasks and successful payouts.
       </p>
 
-      {/* Summary Card */}
       <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-6 rounded-2xl shadow-lg mb-8 text-white">
         <p className="text-emerald-100 text-sm font-medium mb-1">
           Total Lifetime Earnings
@@ -77,7 +76,6 @@ export default function FreelancerEarningsPage() {
         </div>
       ) : (
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-          {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead className="bg-slate-50 text-slate-600 uppercase text-xs tracking-wider border-b border-slate-200">
@@ -113,7 +111,6 @@ export default function FreelancerEarningsPage() {
             </table>
           </div>
 
-          {/* Mobile Cards */}
           <div className="md:hidden divide-y divide-slate-100">
             {payments.map((p) => (
               <div key={p._id} className="p-5 space-y-2">

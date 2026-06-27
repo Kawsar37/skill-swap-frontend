@@ -138,7 +138,6 @@ export default function AdminManageTasksPage() {
             </table>
           </div>
 
-          {/* Mobile Cards */}
           <div className="md:hidden divide-y divide-slate-100">
             {tasks.map((task) => (
               <div

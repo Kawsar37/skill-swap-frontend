@@ -14,7 +14,7 @@ export default function PaymentSuccessPage() {
   const task_id = searchParams.get("task_id");
   const proposal_id = searchParams.get("proposal_id");
 
-  const [status, setStatus] = useState("verifying"); // verifying, success, error
+  const [status, setStatus] = useState("verifying");
   const [details, setDetails] = useState(null);
   const BACKEND_URL =
     process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
@@ -84,7 +84,6 @@ export default function PaymentSuccessPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
       <div className="max-w-lg w-full bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden text-center">
-        {/* Success Header */}
         <div className="bg-emerald-50 p-8 border-b border-emerald-100">
           <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <HiOutlineCheckCircle className="w-12 h-12 text-emerald-600" />
@@ -98,7 +97,6 @@ export default function PaymentSuccessPage() {
           </p>
         </div>
 
-        {/* Transaction Details */}
         <div className="p-8 space-y-4 text-left">
           <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">
             Transaction Details

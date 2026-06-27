@@ -51,7 +51,7 @@ export default function PostTaskPage() {
     const payload = {
       ...formData,
       budget: parseFloat(formData.budget),
-      client_email: session.user.email, // Automatically attached from Better Auth session
+      client_email: session.user.email,
     };
 
     try {
@@ -60,7 +60,7 @@ export default function PostTaskPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // Sends cookies/session if needed
+        credentials: "include",
         body: JSON.stringify(payload),
       });
 
@@ -72,7 +72,6 @@ export default function PostTaskPage() {
 
       setSuccess("Task posted successfully! Redirecting to your tasks...");
 
-      // Redirect to My Tasks page after 1.5 seconds
       setTimeout(() => {
         router.push("/dashboard/client/my-tasks");
       }, 1500);
@@ -83,7 +82,6 @@ export default function PostTaskPage() {
     }
   };
 
-  // Loading state while checking Better Auth session
   if (isPending) {
     return (
       <div className="flex items-center justify-center min-h-[50vh]">
@@ -94,7 +92,6 @@ export default function PostTaskPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">
           Post a New Task
@@ -105,9 +102,7 @@ export default function PostTaskPage() {
         </p>
       </div>
 
-      {/* Form Card */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8">
-        {/* Error Message */}
         {error && (
           <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start space-x-3 text-red-600">
             <FiAlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -115,7 +110,6 @@ export default function PostTaskPage() {
           </div>
         )}
 
-        {/* Success Message */}
         {success && (
           <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-start space-x-3 text-emerald-700">
             <FiCheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -124,7 +118,6 @@ export default function PostTaskPage() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Task Title */}
           <div>
             <label
               htmlFor="title"
@@ -147,9 +140,7 @@ export default function PostTaskPage() {
             </div>
           </div>
 
-          {/* Category and Budget (Grid) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Category */}
             <div>
               <label
                 htmlFor="category"
@@ -173,7 +164,6 @@ export default function PostTaskPage() {
                     </option>
                   ))}
                 </select>
-                {/* Custom dropdown arrow */}
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +181,6 @@ export default function PostTaskPage() {
               </div>
             </div>
 
-            {/* Budget */}
             <div>
               <label
                 htmlFor="budget"
@@ -217,7 +206,6 @@ export default function PostTaskPage() {
             </div>
           </div>
 
-          {/* Deadline */}
           <div>
             <label
               htmlFor="deadline"
@@ -240,7 +228,6 @@ export default function PostTaskPage() {
             </div>
           </div>
 
-          {/* Description */}
           <div>
             <label
               htmlFor="description"
@@ -259,7 +246,6 @@ export default function PostTaskPage() {
             />
           </div>
 
-          {/* Action Buttons */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-end space-y-3 sm:space-y-0 sm:space-x-4">
             <button
               type="button"

@@ -38,9 +38,7 @@ export default function Footer() {
   return (
     <footer className="bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        {/* Main Footer Content */}
         <div className="py-12 lg:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center space-x-2 mb-4">
               <div className="w-9 h-9 bg-emerald-600 rounded-lg flex items-center justify-center">
@@ -52,7 +50,7 @@ export default function Footer() {
               The modern freelance micro-task marketplace connecting talented
               professionals with businesses worldwide.
             </p>
-            {/* Contact Info */}
+
             <div className="space-y-2">
               <a
                 href="mailto:hello@skillswap.com"
@@ -71,7 +69,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Marketplace Column */}
           <div>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
               Marketplace
@@ -90,7 +87,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company Column */}
           <div>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
               Company
@@ -109,7 +105,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter / CTA Column */}
           <div>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
               Stay Updated
@@ -130,7 +125,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="py-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-slate-500">
             © {currentYear} SkillSwap. All rights reserved.

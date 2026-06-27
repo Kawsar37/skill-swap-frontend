@@ -30,7 +30,6 @@ export default function BrowseTasksPage() {
     "Other",
   ];
 
-  // Read current state from URL parameters (Crucial for Challenge 1 & 3)
   const currentSearch = searchParams.get("search") || "";
   const currentCategory = searchParams.get("category") || "All";
   const currentPage = parseInt(searchParams.get("page") || "1");
@@ -39,10 +38,8 @@ export default function BrowseTasksPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
 
-  // Local state for inputs to prevent lag while typing
   const [searchInput, setSearchInput] = useState(currentSearch);
 
-  // Function to update URL parameters (Triggers the useEffect to fetch new data)
   const updateQueryParams = useCallback(
     (name, value) => {
       const params = new URLSearchParams(searchParams.toString());
@@ -51,7 +48,7 @@ export default function BrowseTasksPage() {
       } else {
         params.delete(name);
       }
-      // Reset to page 1 when searching or filtering
+
       if (name !== "page") params.set("page", "1");
 
       router.push(`${pathname}?${params.toString()}`, { scroll: false });
@@ -59,7 +56,6 @@ export default function BrowseTasksPage() {
     [searchParams, router, pathname],
   );
 
-  // Fetch tasks whenever URL params change
   useEffect(() => {
     const fetchTasks = async () => {
       setLoading(true);
@@ -88,7 +84,6 @@ export default function BrowseTasksPage() {
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
             Browse Open Tasks
@@ -99,13 +94,11 @@ export default function BrowseTasksPage() {
           </p>
         </div>
 
-        {/* Search & Filter Bar (Challenge 1) */}
         <div className="bg-white p-4 md:p-6 rounded-2xl border border-slate-200 shadow-sm mb-8">
           <form
             onSubmit={handleSearchSubmit}
             className="flex flex-col md:flex-row gap-4"
           >
-            {/* Search Input */}
             <div className="flex-1 relative">
               <HiOutlineMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
               <input
@@ -117,7 +110,6 @@ export default function BrowseTasksPage() {
               />
             </div>
 
-            {/* Category Dropdown */}
             <div className="relative md:w-56">
               <HiOutlineTag className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
               <select
@@ -147,7 +139,6 @@ export default function BrowseTasksPage() {
               </div>
             </div>
 
-            {/* Search Button */}
             <button
               type="submit"
               className="px-8 py-3 bg-emerald-600 text-white font-semibold rounded-xl hover:bg-emerald-700 shadow-sm hover:shadow-lg hover:shadow-emerald-200 transition-all duration-300"
@@ -157,7 +148,6 @@ export default function BrowseTasksPage() {
           </form>
         </div>
 
-        {/* Loading State */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">
             <FiLoader className="w-10 h-10 text-emerald-600 animate-spin" />
@@ -165,7 +155,6 @@ export default function BrowseTasksPage() {
           </div>
         )}
 
-        {/* Empty State */}
         {!loading && tasks.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20 bg-white rounded-2xl border border-slate-200">
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
@@ -180,7 +169,6 @@ export default function BrowseTasksPage() {
           </div>
         )}
 
-        {/* Tasks Grid */}
         {!loading && tasks.length > 0 && (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
@@ -240,7 +228,6 @@ export default function BrowseTasksPage() {
               ))}
             </div>
 
-            {/* Pagination Controls (Challenge 3) */}
             {totalPages > 1 && (
               <div className="flex items-center justify-center space-x-2 mt-8">
                 <button
@@ -251,11 +238,9 @@ export default function BrowseTasksPage() {
                   <HiOutlineChevronLeft className="w-5 h-5" />
                 </button>
 
-                {/* Page Numbers */}
                 <div className="flex items-center space-x-1">
                   {[...Array(totalPages)].map((_, index) => {
                     const pageNum = index + 1;
-                    // Show limited page numbers for cleaner UI
                     if (
                       pageNum === 1 ||
                       pageNum === totalPages ||

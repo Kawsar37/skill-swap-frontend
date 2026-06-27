@@ -22,7 +22,7 @@ export default function FreelancerProfilePage() {
     name: "",
     image: "",
     bio: "",
-    skills: "", // Will hold comma-separated string
+    skills: "",
     hourly_rate: "",
   });
 
@@ -38,7 +38,6 @@ export default function FreelancerProfilePage() {
         );
         const user = await res.json();
 
-        // Convert skills array to comma-separated string for the input field
         const skillsString = Array.isArray(user.skills)
           ? user.skills.join(", ")
           : "";

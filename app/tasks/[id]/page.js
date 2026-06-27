@@ -116,7 +116,6 @@ export default function TaskDetailsPage() {
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-        {/* Back Button */}
         <button
           onClick={() => router.back()}
           className="flex items-center text-slate-600 hover:text-emerald-600 mb-6 transition-colors font-medium"
@@ -124,7 +123,6 @@ export default function TaskDetailsPage() {
           <HiOutlineArrowLeft className="w-5 h-5 mr-2" /> Back to Tasks
         </button>
 
-        {/* Task Details Card */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8 mb-8">
           <div className="flex flex-wrap gap-3 mb-4">
             <span className="px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-full border border-emerald-200">
@@ -172,7 +170,6 @@ export default function TaskDetailsPage() {
           </p>
         </div>
 
-        {/* Proposal Section (Only for Freelancers who don't own the task) */}
         {isFreelancer && !isOwner && task.status === "open" && (
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8">
             <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center">
@@ -267,7 +264,6 @@ export default function TaskDetailsPage() {
           </div>
         )}
 
-        {/* Message for Task Owner */}
         {isOwner && (
           <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 text-center">
             <p className="text-blue-800 font-medium mb-4">
@@ -282,7 +278,6 @@ export default function TaskDetailsPage() {
           </div>
         )}
 
-        {/* Message for Logged Out Users */}
         {!session && (
           <div className="bg-slate-100 border border-slate-200 rounded-2xl p-8 text-center">
             <h3 className="text-xl font-bold text-slate-900 mb-2">

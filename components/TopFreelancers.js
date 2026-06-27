@@ -8,6 +8,7 @@ import {
   HiOutlineArrowRight,
 } from "react-icons/hi2";
 import { FiLoader, FiAlertCircle, FiInbox, FiUser } from "react-icons/fi";
+import Image from "next/image";
 
 export default function TopFreelancers() {
   const [freelancers, setFreelancers] = useState([]);
@@ -115,7 +116,9 @@ export default function TopFreelancers() {
                   {/* Profile Image */}
                   <div className="relative w-20 h-20 mx-auto mb-4">
                     {freelancer.profileImage || freelancer.avatar ? (
-                      <img
+                      <Image
+                        height={60}
+                        width={60}
                         src={freelancer.profileImage || freelancer.avatar}
                         alt={freelancer.name}
                         className="w-full h-full rounded-full object-cover border-4 border-emerald-100 group-hover:border-emerald-300 transition-all duration-300"
@@ -125,18 +128,15 @@ export default function TopFreelancers() {
                         <FiUser className="w-8 h-8 text-white" />
                       </div>
                     )}
-                    {/* Online Indicator */}
                     {freelancer.isOnline && (
                       <div className="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white" />
                     )}
                   </div>
 
-                  {/* Name */}
                   <h3 className="text-lg font-semibold text-slate-900 group-hover:text-emerald-600 transition-colors duration-300">
                     {freelancer.name || freelancer.fullName || "Freelancer"}
                   </h3>
 
-                  {/* Rating & Jobs */}
                   <div className="flex items-center justify-center space-x-4 mt-2 mb-4">
                     <div className="flex items-center space-x-1">
                       <HiOutlineStar className="w-4 h-4 text-amber-400 fill-amber-400" />
@@ -155,7 +155,6 @@ export default function TopFreelancers() {
                     </div>
                   </div>
 
-                  {/* Skills */}
                   <div className="flex flex-wrap justify-center gap-1.5 mb-5">
                     {(freelancer.skills || [])
                       .slice(0, 3)
@@ -174,7 +173,6 @@ export default function TopFreelancers() {
                     )}
                   </div>
 
-                  {/* View Profile Button */}
                   <Link
                     href={`/freelancers/${freelancer.id || freelancer._id}`}
                     className="inline-flex items-center justify-center w-full space-x-2 px-4 py-2.5 text-sm font-medium text-emerald-600 border border-emerald-600 rounded-xl group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300"
@@ -188,7 +186,6 @@ export default function TopFreelancers() {
           </div>
         )}
 
-        {/* View All Button */}
         {!loading && !error && freelancers.length > 0 && (
           <div className="text-center mt-10">
             <Link

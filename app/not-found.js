@@ -10,7 +10,6 @@ import {
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 md:p-6 lg:p-8 relative overflow-hidden">
-      {/* Background Decorations */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-100 rounded-full blur-3xl opacity-40" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-50 rounded-full blur-3xl opacity-50" />
@@ -18,7 +17,6 @@ export default function NotFound() {
       </div>
 
       <div className="max-w-2xl w-full text-center">
-        {/* Logo */}
         <Link
           href="/"
           className="inline-flex items-center space-x-2 mb-8 group"
@@ -29,12 +27,11 @@ export default function NotFound() {
           <span className="text-2xl font-bold text-slate-900">SkillSwap</span>
         </Link>
 
-        {/* 404 Number */}
         <div className="relative mb-6">
           <h1 className="text-[150px] md:text-[200px] font-black text-transparent bg-clip-text bg-gradient-to-br from-emerald-400 via-emerald-500 to-teal-600 leading-none select-none">
             404
           </h1>
-          {/* Floating Rocket Icon */}
+
           <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-bounce"
             style={{ animationDuration: "3s" }}
@@ -45,7 +42,6 @@ export default function NotFound() {
           </div>
         </div>
 
-        {/* Error Message */}
         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
           Houston, we have a problem
         </h2>
@@ -54,7 +50,6 @@ export default function NotFound() {
           have been moved, deleted, or perhaps it never existed.
         </p>
 
-        {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
           <Link
             href="/"
@@ -72,7 +67,6 @@ export default function NotFound() {
           </Link>
         </div>
 
-        {/* Quick Links */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 max-w-md mx-auto">
           <p className="text-sm font-semibold text-slate-700 mb-4 flex items-center justify-center gap-2">
             <HiOutlineMagnifyingGlass className="w-4 h-4 text-slate-400" />
@@ -110,7 +104,6 @@ export default function NotFound() {
           </div>
         </div>
 
-        {/* Footer Text */}
         <p className="mt-8 text-sm text-slate-400">
           Error Code:{" "}
           <span className="font-mono font-semibold">PAGE_NOT_FOUND</span>

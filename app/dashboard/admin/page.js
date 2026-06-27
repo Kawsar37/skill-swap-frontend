@@ -110,7 +110,6 @@ export default function AdminOverview() {
         Monitor the health and activity of the SkillSwap platform.
       </p>
 
-      {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         {statCards.map((stat, i) => (
           <div
@@ -128,9 +127,7 @@ export default function AdminOverview() {
         ))}
       </div>
 
-      {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-        {/* Task Creation Trend */}
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <h2 className="text-lg font-bold text-slate-900 mb-4">
             Task Creation Trend (Last 30 Days)
@@ -169,7 +166,6 @@ export default function AdminOverview() {
           )}
         </div>
 
-        {/* Category Distribution */}
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <h2 className="text-lg font-bold text-slate-900 mb-4">
             Tasks by Category
@@ -208,7 +204,6 @@ export default function AdminOverview() {
         </div>
       </div>
 
-      {/* Recent Payments */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-6 border-b border-slate-100">
           <h2 className="text-lg font-bold text-slate-900">Recent Payments</h2>
@@ -219,7 +214,6 @@ export default function AdminOverview() {
 
         {analytics?.recentPayments?.length > 0 ? (
           <>
-            {/* Desktop Table */}
             <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-sm text-left">
                 <thead className="bg-slate-50 text-slate-600 uppercase text-xs tracking-wider border-b border-slate-200">
@@ -265,7 +259,6 @@ export default function AdminOverview() {
               </table>
             </div>
 
-            {/* Mobile Cards */}
             <div className="md:hidden divide-y divide-slate-100">
               {analytics.recentPayments.map((payment) => (
                 <div key={payment._id} className="p-5 space-y-3">

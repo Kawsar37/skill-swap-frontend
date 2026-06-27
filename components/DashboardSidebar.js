@@ -31,7 +31,6 @@ function SidebarContent({
 }) {
   return (
     <div className="flex flex-col h-full">
-      {/* Logo */}
       <div className="hidden lg:flex p-6 border-b border-slate-200">
         <Link href="/" className="flex items-center space-x-2">
           <div className="w-9 h-9 bg-emerald-600 rounded-lg flex items-center justify-center">
@@ -41,7 +40,6 @@ function SidebarContent({
         </Link>
       </div>
 
-      {/* User Profile Mini Card */}
       <div className="p-4 border-b border-slate-200">
         <div className="flex items-center space-x-3">
           {user.image ? (
@@ -69,7 +67,6 @@ function SidebarContent({
         </div>
       </div>
 
-      {/* Navigation Links */}
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
@@ -93,7 +90,6 @@ function SidebarContent({
         })}
       </nav>
 
-      {/* Logout Button */}
       <div className="p-4 border-t border-slate-200">
         <button
           onClick={handleLogout}
@@ -112,7 +108,6 @@ export default function DashboardSidebar({ user }) {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Define Links based on Role (Assignment Sections 07, 08, 09)
   const getNavLinks = () => {
     if (user.role === "client") {
       return [
@@ -206,7 +201,6 @@ export default function DashboardSidebar({ user }) {
 
   return (
     <>
-      {/* Mobile Top Bar */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 z-40">
         <Link href="/" className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
@@ -226,18 +220,14 @@ export default function DashboardSidebar({ user }) {
         </button>
       </div>
 
-      {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
         <div
-          // ✅ Added top-16 so it doesn't cover the header
           className="lg:hidden fixed inset-0 top-16 bg-black/50 z-40 backdrop-blur-sm"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
 
-      {/* Mobile Sidebar Drawer */}
       <div
-        // ✅ Changed top-0 to top-16, and h-full to h-[calc(100vh-4rem)]
         className={`lg:hidden fixed top-16 left-0 h-[calc(100vh-4rem)] w-72 bg-white border-r border-slate-200 z-50 transform transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
@@ -251,7 +241,6 @@ export default function DashboardSidebar({ user }) {
         />
       </div>
 
-      {/* Desktop Sidebar (Fixed) */}
       <aside className="hidden lg:flex lg:flex-col lg:fixed lg:inset-y-0 lg:w-64 bg-white border-r border-slate-200 z-30">
         <SidebarContent
           user={user}
@@ -262,7 +251,6 @@ export default function DashboardSidebar({ user }) {
         />
       </aside>
 
-      {/* Spacer for Mobile Top Bar */}
       <div className="lg:hidden h-16 w-full" />
     </>
   );

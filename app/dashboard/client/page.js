@@ -78,7 +78,6 @@ export default function ClientOverview() {
 
   return (
     <div>
-      {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">
           Welcome back, {session?.user?.name?.split(" ")[0] || "Client"}! 👋
@@ -88,7 +87,6 @@ export default function ClientOverview() {
         </p>
       </div>
 
-      {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         {statCards.map((stat, i) => (
           <div
@@ -106,7 +104,6 @@ export default function ClientOverview() {
         ))}
       </div>
 
-      {/* Quick Actions */}
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-slate-900 mb-4">
           Quick Actions
@@ -140,7 +137,6 @@ export default function ClientOverview() {
         </div>
       </div>
 
-      {/* Info Card */}
       <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 mt-8">
         <h3 className="font-semibold text-slate-900 mb-2">💡 Pro Tip</h3>
         <p className="text-sm text-slate-600">
