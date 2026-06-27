@@ -26,7 +26,7 @@ export default function NotFound() {
           <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center group-hover:bg-emerald-700 transition-colors duration-300">
             <HiOutlineRocketLaunch className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold text-slate-900">TaskHive</span>
+          <span className="text-2xl font-bold text-slate-900">SkillSwap</span>
         </Link>
 
         {/* 404 Number */}

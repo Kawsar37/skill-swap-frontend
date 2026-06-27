@@ -6,6 +6,7 @@ import { HiBars3, HiXMark, HiOutlineRocketLaunch } from "react-icons/hi2";
 import { FiUser, FiLogIn } from "react-icons/fi";
 import { authClient, useSession } from "@/lib/auth-client";
 import { usePathname } from "next/navigation";
+import { MdOutlineDashboard } from "react-icons/md";
 
 export default function Navbar() {
   const path = usePathname();
@@ -92,7 +93,12 @@ export default function Navbar() {
                   href={`/dashboard/${isAuthenticated.user.role}`}
                   className="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors duration-300"
                 >
-                  Dashboard
+                  <div className="flex items-center justify-between gap-1">
+                    <div>
+                      <MdOutlineDashboard />
+                    </div>
+                    <div>Dashboard</div>
+                  </div>
                 </Link>
                 <Link
                   href="/profile"

@@ -37,7 +37,7 @@ function SidebarContent({
           <div className="w-9 h-9 bg-emerald-600 rounded-lg flex items-center justify-center">
             <HiOutlineRocketLaunch className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-slate-900">TaskHive</span>
+          <span className="text-xl font-bold text-slate-900">SkillSwap</span>
         </Link>
       </div>
 
@@ -212,7 +212,7 @@ export default function DashboardSidebar({ user }) {
           <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
             <HiOutlineRocketLaunch className="w-4 h-4 text-white" />
           </div>
-          <span className="text-lg font-bold text-slate-900">TaskHive</span>
+          <span className="text-lg font-bold text-slate-900">SkillSwap</span>
         </Link>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
