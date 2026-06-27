@@ -10,6 +10,8 @@ import {
   HiOutlineBriefcase,
   HiOutlineXMark,
   HiOutlineCheck,
+  HiOutlineStar,
+  HiOutlineLink,
 } from "react-icons/hi2";
 import { FiLoader, FiInbox } from "react-icons/fi";
 
@@ -19,6 +21,8 @@ export default function MyTasksPage() {
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({});
+  const [reviewingTask, setReviewingTask] = useState(null);
+  const [reviewForm, setReviewForm] = useState({ rating: 5, comment: "" });
 
   const BACKEND_URL =
     process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
@@ -102,6 +106,31 @@ export default function MyTasksPage() {
     } catch (err) {
       console.error("Exact save error:", err);
       alert("Failed to update task");
+    }
+  };
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/reviews`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          task_id: reviewingTask._id,
+          reviewer_email: session.user.email,
+          reviewee_email: reviewingTask.freelancer_email, // Note: You might need to fetch this or store it on the task
+          rating: reviewForm.rating,
+          comment: reviewForm.comment,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) return alert(data.error);
+
+      alert("Review submitted! Thank you.");
+      setReviewingTask(null);
+      fetchTasks();
+    } catch (err) {
+      alert("Failed to submit review");
     }
   };
 
@@ -237,6 +266,25 @@ export default function MyTasksPage() {
                     <p className="text-sm text-slate-600 line-clamp-2">
                       {task.description}
                     </p>
+                    {/* 🚨 SHOW SUBMITTED DELIVERABLE */}
+                    {task.deliverable_url && (
+                      <div className="mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex items-start gap-3">
+                        <HiOutlineLink className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <div className="min-w-0">
+                          <p className="text-xs font-bold text-emerald-800 uppercase tracking-wide mb-0.5">
+                            Submitted Deliverable
+                          </p>
+                          <a
+                            href={task.deliverable_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-emerald-700 font-medium hover:underline truncate block"
+                          >
+                            {task.deliverable_url}
+                          </a>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {task.status === "open" && (
@@ -257,10 +305,81 @@ export default function MyTasksPage() {
                       </button>
                     </div>
                   )}
+                  {task.status === "completed" && (
+                    <button
+                      onClick={() => setReviewingTask(task)}
+                      className="p-2 text-amber-600 hover:bg-amber-50 rounded-lg border border-amber-200 transition-colors"
+                      title="Leave Review"
+                    >
+                      <HiOutlineStar className="w-5 h-5" />
+                    </button>
+                  )}
                 </div>
               )}
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Review Modal */}
+      {reviewingTask && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
+            <h3 className="text-xl font-bold text-slate-900 mb-4">
+              Leave a Review
+            </h3>
+            <form onSubmit={handleReviewSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                  Rating
+                </label>
+                <div className="flex gap-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() =>
+                        setReviewForm({ ...reviewForm, rating: star })
+                      }
+                    >
+                      <HiOutlineStar
+                        className={`w-8 h-8 transition-colors ${star <= reviewForm.rating ? "text-amber-400 fill-amber-400" : "text-slate-300"}`}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                  Comment
+                </label>
+                <textarea
+                  rows="3"
+                  value={reviewForm.comment}
+                  onChange={(e) =>
+                    setReviewForm({ ...reviewForm, comment: e.target.value })
+                  }
+                  className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"
+                  placeholder="How was your experience?"
+                />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setReviewingTask(null)}
+                  className="flex-1 py-2 border border-slate-200 rounded-lg hover:bg-slate-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+                >
+                  Submit Review
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>
