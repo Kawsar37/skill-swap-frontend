@@ -56,19 +56,19 @@ export default function Hero() {
 
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
               <Link
-                href="/post-task"
+                href="/tasks"
                 className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-7 py-3.5 text-sm font-semibold text-white bg-emerald-600 rounded-xl hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-200 transition-all duration-300 hover:-translate-y-0.5"
               >
-                <span>Post a Task</span>
+                <span>Browse Tasks</span>
                 <HiOutlineArrowRight className="w-4 h-4" />
               </Link>
-              <Link
+              {/* <Link
                 href="/tasks"
                 className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-7 py-3.5 text-sm font-semibold text-emerald-600 border-2 border-emerald-600 rounded-xl hover:bg-emerald-50 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <FiSearch className="w-4 h-4" />
                 <span>Browse Tasks</span>
-              </Link>
+              </Link> */}
             </div>
 
             <div className="mt-10 flex items-center gap-6 justify-center lg:justify-start">
