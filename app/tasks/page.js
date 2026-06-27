@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import Link from "next/link";
 import {
@@ -13,8 +13,7 @@ import {
   HiOutlineChevronRight,
 } from "react-icons/hi2";
 import { FiLoader, FiInbox } from "react-icons/fi";
-
-export default function BrowseTasksPage() {
+function TasksContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -286,5 +285,20 @@ export default function BrowseTasksPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function BrowseTasksPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex flex-col items-center justify-center min-h-screen bg-slate-50">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
+          <p className="mt-4 text-slate-500">Loading tasks...</p>
+        </div>
+      }
+    >
+      <TasksContent />
+    </Suspense>
   );
 }
