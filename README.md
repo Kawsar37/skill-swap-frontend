@@ -70,7 +70,7 @@ This project was developed to fulfill advanced full-stack engineering requiremen
 ### Step 1: Clone the Repository
 
 ````bash
-git clone <your-frontend-repo-url>
+git clone https://github.com/Kawsar37/skill-swap-frontend.git
 cd skill-swap-frontend
 
 
