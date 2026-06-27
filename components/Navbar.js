@@ -95,12 +95,7 @@ export default function Navbar() {
                     <div>Dashboard</div>
                   </div>
                 </Link>
-                <Link
-                  href="/profile"
-                  className="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors duration-300"
-                >
-                  Profile
-                </Link>
+
                 <button
                   onClick={handleSignOut}
                   className="inline-flex items-center space-x-1.5 px-4 py-2 text-sm font-medium text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 transition-all duration-300"

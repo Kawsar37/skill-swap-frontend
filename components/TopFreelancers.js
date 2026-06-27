@@ -14,22 +14,23 @@ export default function TopFreelancers() {
   const [freelancers, setFreelancers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const BACKEND_URL =
+    process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
   useEffect(() => {
     const fetchFreelancers = async () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch("/api/freelancers/top", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          `${BACKEND_URL}/api/users/freelancers/top`,
+          {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
           },
-        });
+        );
 
-        if (!response.ok) {
+        if (!response.ok)
           throw new Error(`Failed to fetch freelancers: ${response.status}`);
-        }
 
         const data = await response.json();
         setFreelancers(data.freelancers || data || []);
@@ -41,12 +42,11 @@ export default function TopFreelancers() {
     };
 
     fetchFreelancers();
-  }, []);
+  }, [BACKEND_URL]);
 
   return (
     <section className="py-16 lg:py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-12">
           <span className="inline-block px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full mb-4">
             Top Talent
@@ -60,7 +60,6 @@ export default function TopFreelancers() {
           </p>
         </div>
 
-        {/* Loading State */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">
             <FiLoader className="w-8 h-8 text-emerald-600 animate-spin" />
@@ -70,7 +69,6 @@ export default function TopFreelancers() {
           </div>
         )}
 
-        {/* Error State */}
         {error && !loading && (
           <div className="flex flex-col items-center justify-center py-20">
             <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-4">
@@ -89,7 +87,6 @@ export default function TopFreelancers() {
           </div>
         )}
 
-        {/* Empty State */}
         {!loading && !error && freelancers.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20">
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
@@ -104,7 +101,6 @@ export default function TopFreelancers() {
           </div>
         )}
 
-        {/* Freelancers Grid */}
         {!loading && !error && freelancers.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {freelancers.map((freelancer) => (
@@ -113,7 +109,6 @@ export default function TopFreelancers() {
                 className="group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
               >
                 <div className="p-6 text-center">
-                  {/* Profile Image */}
                   <div className="relative w-20 h-20 mx-auto mb-4">
                     {freelancer.profileImage || freelancer.avatar ? (
                       <Image
@@ -174,7 +169,7 @@ export default function TopFreelancers() {
                   </div>
 
                   <Link
-                    href={`/freelancers/${freelancer.id || freelancer._id}`}
+                    href={`/freelancers/${encodeURIComponent(freelancer.email)}`}
                     className="inline-flex items-center justify-center w-full space-x-2 px-4 py-2.5 text-sm font-medium text-emerald-600 border border-emerald-600 rounded-xl group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300"
                   >
                     <span>View Profile</span>

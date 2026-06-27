@@ -15,22 +15,20 @@ export default function FeaturedTasks() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const BACKEND_URL =
+    process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
   useEffect(() => {
     const fetchTasks = async () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch("/api/tasks/featured", {
+        const response = await fetch(`${BACKEND_URL}/api/tasks/featured`, {
           method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
         });
 
-        if (!response.ok) {
+        if (!response.ok)
           throw new Error(`Failed to fetch tasks: ${response.status}`);
-        }
 
         const data = await response.json();
         setTasks(data.tasks || data || []);
@@ -42,7 +40,7 @@ export default function FeaturedTasks() {
     };
 
     fetchTasks();
-  }, []);
+  }, [BACKEND_URL]);
 
   return (
     <section className="py-16 lg:py-24 bg-white">
