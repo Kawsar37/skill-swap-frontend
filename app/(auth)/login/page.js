@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   HiOutlineEnvelope,
   HiOutlineLockClosed,
@@ -12,10 +12,12 @@ import {
 } from "react-icons/hi2";
 import { FaGoogle } from "react-icons/fa";
 import { FiAlertCircle } from "react-icons/fi";
-import { authClient, signIn, useSession } from "@/lib/auth-client";
+import { authClient, signIn, signOut, useSession } from "@/lib/auth-client";
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const isBlockedError = searchParams.get("error") === "blocked";
   //   const user = useSession().data.user;
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -39,7 +41,16 @@ export default function LoginPage() {
       });
       if (result.error) throw new Error(result.error.message);
 
-      const userRole = result.data.user.role;
+      // 🚨 CRITICAL: Fetch the fresh session to check custom fields like 'isBlocked'
+      const sessionRes = await authClient.getSession();
+      const user = sessionRes.data?.user;
+
+      if (user?.isBlocked) {
+        await signOut(); // Destroy the session instantly!
+        throw new Error("Your account has been blocked by an administrator.");
+      }
+
+      const userRole = user?.role || result.data?.user?.role;
 
       // Route based on Role (Assignment Requirement)
       if (userRole === "client") {
@@ -149,10 +160,14 @@ export default function LoginPage() {
           </div>
 
           {/* Error Message */}
-          {error && (
+          {(error || isBlockedError) && (
             <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start space-x-2 text-red-600 text-sm">
               <FiAlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-              <span>{error}</span>
+              <span>
+                {isBlockedError
+                  ? "Your account has been blocked by an administrator. Please contact support."
+                  : error}
+              </span>
             </div>
           )}
 
